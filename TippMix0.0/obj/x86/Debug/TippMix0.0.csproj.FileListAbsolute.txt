@@ -1,0 +1,7 @@
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\bin\Debug\TippMix0.0.exe
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\bin\Debug\TippMix0.0.pdb
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Debug\TippMix0.0.exe
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Debug\TippMix0.0.pdb
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Debug\TippMix0.0.csprojResolveAssemblyReference.cache
+C:\Users\ruadam\OneDrive\C#\Sajat\Otthoni projektek\TippMix0.0\TippMix0.0\obj\x86\Debug\TippMix0.0.exe
+C:\Users\ruadam\OneDrive\C#\Sajat\Otthoni projektek\TippMix0.0\TippMix0.0\obj\x86\Debug\TippMix0.0.pdb

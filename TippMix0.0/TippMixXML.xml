@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TippMix0.0</name>
+    </assembly>
+    <members>
+        <member name="T:TippMix.Hist1D`1">
+            <summary>
+            This class represents a 1 dimensional histogram. Similar to the class Distribution, but bin size is constant and is not normalized.
+            </summary>
+            <typeparam name="T">Class puts this type of data to bins. Must be able to be converted to double.</typeparam>
+        </member>
+        <member name="F:TippMix.Hist1D`1.binNumber">
+            <summary>
+            Number of bins in the histogram.
+            </summary>
+        </member>
+        <member name="F:TippMix.Hist1D`1.binSize">
+            <summary>
+            Size (= width) of one bin. "Right side" of the histogram is binNumber * binSize.
+            </summary>
+        </member>
+        <member name="F:TippMix.Hist1D`1.hist">
+            <summary>
+            Class stores the values in this array. This is the histogram itself.
+            </summary>
+        </member>
+        <member name="M:TippMix.Hist1D`1.whichBin(`0)">
+            <summary>
+            Returns the index of the bin in the histogram which contains the 'data' if the bin size is given.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown when method can not convert T to double.</exception>
+            <param name="data">The numerical data which we want to put in a bin. Type must be able to be converted to double.</param>
+            <returns>an integer which is the index of the bin data belongs to.</returns>
+        </member>
+        <member name="M:TippMix.Hist1D`1.addData(`0)">
+            <summary>
+            Adds 1 to the bin data belongs to.
+            </summary>
+            <param name="data">The numerical data which we want to put in a bin. Type must be able to be converted to double.</param>
+        </member>
+        <member name="M:TippMix.Hist1D`1.fillWith(System.Int32)">
+            <summary>
+            Fills all of the bins with the given value.
+            </summary>
+            <param name="value">Sets all of the bin values to this value.</param>
+        </member>
+        <member name="M:TippMix.Hist1D`1.#ctor(System.Collections.Generic.List{`0},System.Double,System.Int32)">
+            <summary>
+            Initializes a new instance of Hist1D with tha given bin size and bin number, filled with the elements of dataSet.
+            </summary>
+            <param name="dataSet">List of T type objects. Elements must be able to be converted to double.</param>
+            <param name="binSize_">Size (= width) of one bin.</param>
+            <param name="binNumber_">Number of the binSize_ sized bins.</param>
+        </member>
+        <member name="M:TippMix.Hist1D`1.#ctor(System.Double,System.Int32)">
+            <summary>
+            Initializes a new instance of Hist1D with tha given bin size and bin number, filled with zeros.
+            </summary>
+            <param name="binSize_">Size (= width) of one bin.</param>
+            <param name="binNumber_">Number of the binSize_ sized bins.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:TippMix.Hist1D`1.writeToFile(System.String,System.String,System.String,System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:TippMix.Hist1D`1.writeToFile(System.String,System.Double,System.String,System.String,System.String)" -->
+        <member name="T:TippMix.Accessories">
+            <summary>
+            Thisclass contains the basic functions the program needs.
+            </summary>
+        </member>
+        <member name="F:TippMix.Accessories.DEBUG_LEVEL">
+            <summary>
+            Acts as a global variable. Conrtols how detailed the output is. The higher the more tetailed the output is.
+            </summary>
+            <remarks>1 = only main status reports. Normal output for a user.\n2 = report about entering each function.\n3 = every step in every function is printed on the screen.</remarks>
+        </member>
+        <member name="M:TippMix.Accessories.writeSPListToFile(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent})">
+            <summary>
+            Function expects a List of SportEvent objects, and writes their properties to a textfile.
+            </summary>
+            <param name="splist"></param>
+        </member>
+        <member name="M:TippMix.Accessories.downloadStringUTF8(System.String)">
+            <summary>
+            Function downloads the webpage, given in the address parameter, and converts it into string.
+            </summary>
+            <param name="address">A URI of a web page we would like t download.</param>
+            <returns>Returns the source of the webpage in a string in UTF8 encoding.</returns>
+        </member>
+        <member name="M:TippMix.Accessories.getEventFromId(System.Collections.Generic.List{TippMix.PastSportEvent},System.Int64)">
+            <summary>
+            This function seeks for a SoprtEvent with the specified ID in the given List of SportEvent objects.
+            </summary>
+            <remarks>The function seeks for the ID with interval halfing algorithm, so it is important to give the list to the function ordered by the ID-isSuccesful.</remarks>
+            <param name="spevList">List of SportEvent objects ordered by ID.</param>
+            <param name="ID">The ID we are searcing for.</param>
+            <returns> the index of the SportEvent object with the </returns>
+        </member>
+        <member name="T:TippMix.Model">
+            <summary>
+            Absctract superclass for the probability estimator models. Provides a common function and attribute set so the different models are interchangable.
+            </summary>
+        </member>
+        <member name="M:TippMix.odds_model.addOfferToBettablesList(TippMix.Offer)">
+            <summary>
+            Function expects an Offer object, and adds all of the valid offers to the bettables list with their probability.
+            </summary>
+            <param name="offer">An Offer obect with 0 to 3 valid offers.</param>
+        </member>
+        <member name="M:TippMix.odds_model.getHistOfOdds(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent})">
+            <summary>
+            This function iterates through the given Dictionary of SportEvent objects and makes a histogram of all offered nonzero odds.
+            </summary>
+            <param name="sportsEventList">A dictionary of SportEvent objects.</param>
+            <returns> a Hist1D object which contains the histogram of the offered odds.</returns>
+        </member>
+        <member name="M:TippMix.odds_model.getHistOfOddsForTest(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent},TippMix.round)">
+            <summary>
+            This function iterates through the given Dictionary of SportEvent objects and makes a histogram of all offered nonzero odds.
+            </summary>
+            <param name="sportsEventList">A dictionary of SportEvent objects.</param>
+            <returns> a Hist1D object which contains the histogram of the offered odds.</returns>
+        </member>
+        <member name="M:TippMix.odds_model.getHistOfWinningOddsAlternativeForTest(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent},TippMix.round)">
+            <summary>
+            This function iterates through the given Dictionary of SportEvent objects and makes a histogram of all winner odds where we know at least one offered odd.
+            </summary>
+            <param name="sportsEventList">A dictionary of SportEvent objects.</param>
+            <returns> a Hist1D object which contains the histogram of the offered odds.</returns>
+        </member>
+        <member name="M:TippMix.odds_model.getHistOfWinningOdds(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent})">
+            <summary>
+            This function iterates through the given Dictionary of SportEvent objects and makes a histogram of all winner odds where we know at least one offered odd.
+            </summary>
+            <param name="sportsEventList">A dictionary of SportEvent objects.</param>
+            <returns> a Hist1D object which contains the histogram of the offered odds.</returns>
+        </member>
+        <member name="T:TippMix.SportEvent">
+            <summary>
+            Base class for sport events.
+            </summary>
+        </member>
+        <member name="F:TippMix.SportEvent.ID">
+            <summary>
+            It'isSuccesful a unique ID of an event. It'isSuccesful YYYYWWRNNN: Year, week, round, and number.
+            </summary>
+        </member>
+        <member name="M:TippMix.SportEvent.getRound">
+            <summary>
+            Determines the round (year, week and round number) from the SporrtEvent object'isSuccesful ID attribute.
+            </summary>
+            <returns> a round object which belongs to the current SportEvent object.</returns>
+        </member>
+        <member name="M:TippMix.SportEvent.getNumber">
+            <summary>
+            Determines the number of a SportEvent object from it'isSuccesful ID.
+            </summary>
+            <remarks>The number of a SportEvent object is the number within one round. It starts from 1 and usually less then 256. It is the last 3 digits of the ID.</remarks>
+            <returns> the number of the SportEvent object in an int.</returns>
+        </member>
+        <member name="T:TippMix.Bettable">
+            <summary>
+            One option to bet. Belongs to a certain outcome of a SportEvent. Contains information about the ID,  Child class of SportEvent.
+            </summary>
+        </member>
+        <member name="T:TippMix.Offer">
+            <summary>
+            Sores elements of the current offer.
+            </summary>
+        </member>
+        <member name="T:TippMix.PastSportEvent">
+            <summary>
+            A sport event which already happened. Inherits from Offer, because we know offers from the past (in the ideal case), plus reults.
+            </summary>
+        </member>
+        <member name="F:TippMix.PastSportEvent.outcome">
+            <summary>
+            Can be either "H", "D", "V" or "N" if there is no result yet.
+            </summary>
+        </member>
+        <member name="M:TippMix.PastSportEvent.ToString">
+            <summary>
+            Returns the string representation of the SportEventinstance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TippMix.SportEventDictionary">
+            <summary>
+            This object contains functions to get the list of SportEvent objects from the web, or from a file in the correct format. It also contains helper methods as subrotines for these purposes, for example conversions.
+            </summary>
+        </member>
+        <member name="F:TippMix.SportEventDictionary.sportsEventList">
+            <summary>
+            Contains a set of SportEvent objects in a dictionary.
+            </summary>
+        </member>
+        <member name="F:TippMix.SportEventDictionary.storageFileName">
+            <summary>
+            The object can save the list to a file, or read the file and fill the dictionary from it. This is the name of the file.
+            </summary>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.uploadFile">
+            <summary>
+            This function updates the missing rounds of the default storage file on the local computer.
+            </summary>
+            
+        </member>
+        <member name="M:TippMix.SportEventDictionary.missingFromWeb">
+            <summary>
+            Determines the newest occuring round in the sportsEventList, and reads only the newer rounds from web.
+            </summary>
+            
+        </member>
+        <member name="M:TippMix.SportEventDictionary.fillFromFile">
+            <summary>
+            Reads a set of sportEvent objects from a correctly formated file, and set the list to the sportEventList property of the class to this list.
+            </summary>
+            <remarks>Each line of the file must be in the format ToTabSeparatedString method of PastSportEvent produces. First it clears the sportsEventList property so it will be exactly what is read from the file.</remarks>
+            
+        </member>
+        <member name="M:TippMix.SportEventDictionary.fillFromWeb">
+            <summary>
+            Clears the sportsEventList, and fills it from the web.
+            </summary>
+            
+        </member>
+        <member name="M:TippMix.SportEventDictionary.getOfferList(System.Collections.Generic.List{TippMix.round})">
+            <summary>
+            Function reads the offers of the given roundlist in allRounds.
+            </summary>
+            <param name="allRounds">A list of round objects. Function iterates through it and tries to read their offers.</param>
+            <returns> a list of SportEvent objects. </returns>
+            
+        </member>
+        <member name="M:TippMix.SportEventDictionary.addListFromFile">
+            <summary>
+            Reads a set of sportEvent objects from a correctly formated file, and adds the list to the sportEventList property of the class.
+            </summary>
+            <remarks>Each line of the file must be in the format ToTabSeparatedString method of PastSportEvent produces.</remarks>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.addToSportsEventListFromFileLine(System.String)">
+            <summary>
+            Gets a string  in the format ToTabSeparatedString method of PastSportEvent produces, converts it to a PastSportEvent object, and adds it to the sportsEventList property of the object.
+            </summary>
+            <param name="line"></param>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.getSportEventFromString(System.String)">
+            <summary>
+            This function converts a correctly formatted string to a SportEvent object.
+            </summary>
+            <remarks>The input string must be the same format the SportEvent object'isSuccesful ToCSV function produces. It can be considered as the "inverse" of the ToCSV function.</remarks>
+            <param name="line">The tabulator separated string which contains every attribute of a SportEvent in the correct order.</param>
+            <returns> the SportEvent object described in the line parameter.</returns>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.addListFromWeb">
+            <summary>
+            Reads all the results and offers from web and fills sportsEventList from them.
+            </summary>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.fillResultsFromWeb(System.Collections.Generic.List{TippMix.round})">
+            <summary>
+            This function reads the official results from the web, and fills the sportsEventList property with them.
+            </summary>
+            <param name="allRounds"></param>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.fillOffersFromWebContent(TippMix.round,System.String)">
+            <summary>
+            Function searces for offers in a string and completes the corresponding PastSportEvent objects.
+            </summary>
+            <param name="now"></param>
+            <param name="webPageContent"></param>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.ReadWhatToRead">
+            <summary>
+            Function reads the list of past rounds. It stores the links to the 
+            </summary>
+            <returns> the a list of rounds which contains all rounds what can be found in the official site of TippMix.</returns>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.convertMatchToRound(System.Text.RegularExpressions.Match)">
+            <summary>
+            Function converts the regular expression match to the round struct, which this program can handle.
+            </summary>
+            <remarks>The regular expression must be the one used in ReadWhatToRead function.</remarks>
+            <param name="match">The Match class type variable, which is a match to the regular expression used in the ReadWhatToRead function.</param>
+            <returns></returns>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.ConvertMatchToEvent(System.Collections.Generic.Dictionary{System.Int64,TippMix.PastSportEvent}@,System.Text.RegularExpressions.Match,TippMix.round)">
+            <summary>
+            This function reads the given match for a particulat regular expression, and persesand converts the data in it.
+            </summary>
+            <remarks>The match has to be match to the regular expression "<p>(\d{3})  (.+)<br />\n([&#8211;0-9]+) / (.+) / (.+)<br />\nH ([&#8211;0-9,]+) / D ([&#8211;0-9,]+) / V ([&#8211;0-9,]+) / (.+)</p>".</remarks>
+            <param name="match"></param>
+            <returns>Returns the SportEvent containing the data in appropriate format.</returns>
+        </member>
+        <member name="M:TippMix.SportEventDictionary.convertMatchToResult(System.Text.RegularExpressions.Match,TippMix.round,System.Int32)">
+            <summary>
+            Function gets a SportEvent object as a reference, and sets it'isSuccesful result, outcome and 
+            </summary>
+            <param name="spev"></param>
+            <param name="match"></param>
+            <param name="year"></param>
+            <param name="week"></param>
+            <param name="round_number"></param>
+        </member>
+        <member name="T:TippMix.PassiveSportEvent">
+            <summary>
+            A sports event from the past. We cannot bet it, and already know it'isSuccesful result.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,5 @@
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\bin\Release\TippMix0.0.exe
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\bin\Release\TippMix0.0.pdb
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Release\TippMix0.0.exe
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Release\TippMix0.0.pdb
+C:\Users\Rudi\Documents\Visual Studio 2010\Projects\TippMix0.0\TippMix0.0\obj\x86\Release\TippMix0.0.csprojResolveAssemblyReference.cache
